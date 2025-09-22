@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { AddHotelModal } from "@/components/modals/add-hotel-modal";
 
 const mockStats = {
   totalBookings: 147,
@@ -101,10 +102,12 @@ export default function Dashboard() {
                 Gérez vos établissements et réservations en un coup d'œil
               </p>
             </div>
-            <Button variant="secondary" size="lg">
-              <Plus className="h-4 w-4 mr-2" />
-              Ajouter un hôtel
-            </Button>
+            <AddHotelModal>
+              <Button variant="secondary" size="lg">
+                <Plus className="h-4 w-4 mr-2" />
+                Ajouter un hôtel
+              </Button>
+            </AddHotelModal>
           </div>
         </div>
       </div>

@@ -1,7 +1,8 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Hotel, User, Search, BarChart3, Menu } from "lucide-react";
+import { Hotel, User, Search, BarChart3, Menu, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { AuthModal } from "@/components/modals/auth-modal";
 import { cn } from "@/lib/utils";
 
 export const Navbar = () => {
@@ -50,14 +51,25 @@ export const Navbar = () => {
             >
               Hôtels
             </Link>
+            <Link
+              to="/contact"
+              className={cn(
+                "text-sm font-medium transition-colors hover:text-primary",
+                isActive("/contact") ? "text-primary" : "text-muted-foreground"
+              )}
+            >
+              Contact
+            </Link>
           </div>
 
           {/* Actions */}
           <div className="flex items-center space-x-4">
-            <Button variant="ghost" size="sm" className="hidden md:flex">
-              <User className="h-4 w-4 mr-2" />
-              Connexion
-            </Button>
+            <AuthModal>
+              <Button variant="ghost" size="sm" className="hidden md:flex">
+                <User className="h-4 w-4 mr-2" />
+                Connexion
+              </Button>
+            </AuthModal>
             <Link to="/dashboard">
               <Button variant="outline" size="sm">
                 <BarChart3 className="h-4 w-4 mr-2" />

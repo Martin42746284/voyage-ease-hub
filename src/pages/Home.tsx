@@ -85,6 +85,21 @@ export default function Home() {
                 +1000 réservations
               </Badge>
             </div>
+            
+            <div className="flex flex-col sm:flex-row gap-4 mb-12">
+              <button 
+                onClick={() => navigate('/search')}
+                className="px-8 py-3 bg-white text-primary font-semibold rounded-lg hover:bg-white/90 transition-all transform hover:scale-105"
+              >
+                Découvrir nos hôtels
+              </button>
+              <button
+                onClick={() => navigate('/map')}
+                className="px-8 py-3 bg-white/10 text-white font-semibold rounded-lg border border-white/20 hover:bg-white/20 transition-all backdrop-blur-sm transform hover:scale-105"
+              >
+                Voir sur la carte
+              </button>
+            </div>
           </div>
 
           <SearchBar 

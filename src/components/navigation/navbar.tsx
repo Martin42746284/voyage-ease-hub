@@ -43,6 +43,15 @@ export const Navbar = () => {
               Recherche
             </Link>
             <Link
+              to="/map"
+              className={cn(
+                "text-sm font-medium transition-colors hover:text-primary",
+                isActive("/map") ? "text-primary" : "text-muted-foreground"
+              )}
+            >
+              Carte
+            </Link>
+            <Link
               to="/hotels"
               className={cn(
                 "text-sm font-medium transition-colors hover:text-primary",

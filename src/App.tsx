@@ -1,34 +1,40 @@
-import { useState, useEffect } from 'react'
-import supabase from './utils/supabase'
+import { Toaster } from "@/components/ui/toaster";
+import { Toaster as Sonner } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Navbar } from "./components/navigation/navbar";
+import Home from "./pages/Home";
+import SearchResults from "./pages/SearchResults";
+import HotelDetails from "./pages/HotelDetails";
+import Dashboard from "./pages/Dashboard";
+import Contact from "./pages/Contact";
+import NotFound from "./pages/NotFound";
 
-function Page() {
-  const [todos, setTodos] = useState<any[]>([])
+const queryClient = new QueryClient();
 
-  useEffect(() => {
-    async function getTodos() {
-      const { data, error } = await supabase.from('todos').select()
+const App = () => (
+  <QueryClientProvider client={queryClient}>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
+        <div className="min-h-screen bg-background">
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/search" element={<SearchResults />} />
+            <Route path="/hotels" element={<SearchResults />} />
+            <Route path="/hotel/:id" element={<HotelDetails />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/contact" element={<Contact />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </div>
+      </BrowserRouter>
+    </TooltipProvider>
+  </QueryClientProvider>
+);
 
-      if (error) {
-        console.error(error)
-        return
-      }
-
-      if (data && data.length > 0) {
-        setTodos(data)
-      }
-    }
-
-    getTodos()
-  }, [])
-
-  return (
-    <div>
-      {todos.map((todo) => (
-        <li key={todo.id}>{todo.title}</li> 
-        // adapte la clé et le champ selon les colonnes de ta table
-      ))}
-    </div>
-  )
-}
-
-export default Page
+export default App;
